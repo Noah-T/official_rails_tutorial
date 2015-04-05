@@ -12,10 +12,23 @@ class ArticlesController < ApplicationController
 		#permit means these properties can be written to
 		@article = Article.new(article_params)
 
-		@article.save
-
-		redirect_to @article
+		if @article.save
+			#if save is successful, show the article that was just created
+			redirect_to @article
+		else 
+			#otherwise use render (instead of redirect) to show the form , intact with invalid input
+			render 'new'
+		end
 	end
+
+	def update
+		@article = Article.find(params[:id])
+
+		if @article.update(article_params)
+    		redirect_to @article
+  		else
+    		render 'edit'
+  end
 
 	def show
 		#:id will give us the id associated with the request
