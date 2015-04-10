@@ -28,7 +28,8 @@ class ArticlesController < ApplicationController
     		redirect_to @article
   		else
     		render 'edit'
-  end
+  		end
+  	end
 
 	def show
 		#:id will give us the id associated with the request
@@ -40,6 +41,7 @@ class ArticlesController < ApplicationController
 		@article.destroy
 		#this redirect to index
 		redirect_to articles_path
+	end
 
 	private
 		def article_params
